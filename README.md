@@ -1,6 +1,6 @@
 # ZernikeMoments
 
-Mirror of GPL code writen by Marcin Novotni (Uni-Bonn) and provided as supplementary material with the paper:
+Fork of GPL code writen by Marcin Novotni (Uni-Bonn) and provided as supplementary material with the paper:
 M. Novotni, R. Klein "Shape Retrieval using 3D Zernike Descriptors" Computer Aided Design 2004; 36(11):1047-1062
 
 Downloaded from: http://cg.cs.uni-bonn.de/project-pages/3dsearch/downloads.html#3D%20Zernike%20Descriptors
