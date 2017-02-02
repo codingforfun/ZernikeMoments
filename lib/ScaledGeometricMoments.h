@@ -87,17 +87,6 @@ public:
         int _maxOrder = 1       /**< maximal order to compute moments for */
         );
 
-    /// Constructor for equal dimensions for each axis
-    ScaledGeometricalMoments (
-        const VoxelT* _voxels,  /**< input voxel grid */
-        int _dim,               /**< the grid is _dim^3 */
-        double _xCOG,           /**< x-coord of the center of gravity */
-        double _yCOG,           /**< y-coord of the center of gravity */
-        double _zCOG,           /**< z-coord of the center of gravity */
-        double _scale,          /**< scaling factor */
-        int _maxOrder = 1       /**< maximal order to compute moments for */
-        );
-
     /// Default constructor
     ScaledGeometricalMoments ();
 

@@ -53,19 +53,6 @@ ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments (
    Init (_voxels, _xDim, _yDim, _zDim, _xCOG, _yCOG, _zCOG, _scale, _maxOrder);
 }
 
-
-template<class VoxelT, class MomentT>
-ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments (
-        const VoxelT* _voxels,
-        int _dim,
-        double _xCOG, double _yCOG, double _zCOG,
-        double _scale,
-        int _maxOrder)
-{
-   Init (_voxels, _dim, _dim, _dim, _xCOG, _yCOG, _zCOG, _scale, _maxOrder);
-}
-
-
 template<class VoxelT, class MomentT>
 void ScaledGeometricalMoments<VoxelT,MomentT>::Init (
         const VoxelT* _voxels,

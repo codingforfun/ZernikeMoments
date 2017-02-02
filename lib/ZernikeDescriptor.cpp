@@ -117,7 +117,7 @@ void ZernikeDescriptor<T, TIn>::NormalizeGrid ()
 template<class T, class TIn>
 void ZernikeDescriptor<T, TIn>::ComputeNormalization ()
 {
-    ScaledGeometricalMoments<T, T> gm (voxels_, dim_, 0.0, 0.0, 0.0, 1.0);
+    ScaledGeometricalMoments<T, T> gm (voxels_, dim_, dim_, dim_, 0.0, 0.0, 0.0, 1.0);
 
     // compute the geometrical transform for no translation and scaling, first
     // to get the 0'th and 1'st order properties of the function
