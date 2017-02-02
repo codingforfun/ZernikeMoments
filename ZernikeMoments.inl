@@ -37,6 +37,8 @@ for more information, see the paper:
  *                                                                           *
 \*===========================================================================*/
 
+#include <cstdlib>
+
 template<class VoxelT, class MomentT>
 inline typename ZernikeMoments<VoxelT,MomentT>::ComplexT
 ZernikeMoments<VoxelT,MomentT>::GetMoment (int _n, int _l, int _m)

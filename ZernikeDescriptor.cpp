@@ -37,6 +37,8 @@ for more information, see the paper:
  *                                                                           *
 \*===========================================================================*/
 
+#include <fstream>
+
 template<class T, class TIn>
 ZernikeDescriptor<T, TIn>::ZernikeDescriptor (T* _voxels, int _dim, int _order) :
     voxels_ (_voxels), dim_ (_dim), order_ (_order)

@@ -50,13 +50,7 @@ for more information, see the paper:
 #include "ZernikeDescriptor.h"
 
 // ---- std includes ----
-#include <vector>
-#include <complex>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-
-#include <stdio.h>
+#include <cstring>
 
 // reads a voxel grid from a binary file
 template<class TIn, class TOut>
