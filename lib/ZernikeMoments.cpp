@@ -39,6 +39,8 @@ for more information, see the paper:
 
 // ---------- implementation of ComplexCoeff struct -------------
 
+#include "ZernikeMoments.h"
+
 /**
  * Copy constructor
  */

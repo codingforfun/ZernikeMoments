@@ -37,6 +37,9 @@ for more information, see the paper:
  *                                                                           *
 \*===========================================================================*/
 
+#include "ScaledGeometricMoments.h"
+#include <cstddef>
+
 template<class VoxelT, class MomentT>
 ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments ()
 {
