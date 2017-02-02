@@ -88,6 +88,10 @@ ZernikeMoments<VoxelT,MomentT>::ZernikeMoments () :
 template<class VoxelT, class MomentT>
 void ZernikeMoments<VoxelT,MomentT>::Init (int _order, ScaledGeometricalMoments<VoxelT,MomentT>& _gm)
 {
+    /* Todo: Init() doesn't depend on the geomentrical moments.
+     * Removing the  parameter and moving it to Compute() will make the class more efficient to reuse to
+     * compute ZM for several objects at once.
+     */
     gm_ = _gm;
     order_ = _order;
 
@@ -321,6 +325,7 @@ void ZernikeMoments<VoxelT,MomentT>::Compute ()
                 zm *= (T)(3.0 / (4.0 * PI));
                 if (n ==0 && l == 0 && m == 0)
                 {
+                    // FixMe Unused variable! What is it for?
                     nullMoment = zm.real ();
                 }
                 zernikeMoments_[n][li][m] = zm;

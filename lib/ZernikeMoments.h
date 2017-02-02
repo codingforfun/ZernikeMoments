@@ -97,6 +97,10 @@ public:
     ZernikeMoments (int _order, ScaledGeometricalMoments<VoxelT,MomentT>& _gm);
     ZernikeMoments ();
 
+    /* Todo: Init() doesn't depend on the geomentrical moments.
+     * Removing the  parameter and moving it to Compute() will make the class more efficient to reuse to
+     * compute ZM for several objects at once.
+     */
     void Init (int _order, ScaledGeometricalMoments<VoxelT,MomentT>& _gm);
     void Compute ();
 

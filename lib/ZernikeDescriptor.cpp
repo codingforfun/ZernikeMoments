@@ -180,6 +180,10 @@ T* ZernikeDescriptor<T, TIn>::ReadGrid (const char* _fname, int& _dim_)
     return result;
 }
 
+/**
+ * Computes the bigest distance from the given COG to any voxel with value bigger than 0.9
+ * I.e. I think a binary volume is implicitly assumed here.
+ */
 template<class T, class TIn>
 double ZernikeDescriptor<T, TIn>::ComputeScale_BoundingSphere (T* _voxels, int _dim, T _xCOG, T _yCOG, T _zCOG)
 {
@@ -213,6 +217,10 @@ double ZernikeDescriptor<T, TIn>::ComputeScale_BoundingSphere (T* _voxels, int _
     return std::sqrt (max);
 }
 
+/**
+ * Computes the average distance from the given COG to all voxels with value bigger than 0.9
+ * I.e. I think a binary volume is implicitly assumed here.
+ */
 template<class T, class TIn>
 double ZernikeDescriptor<T, TIn>::ComputeScale_RadiusVar (T* _voxels, int _dim, T _xCOG, T _yCOG, T _zCOG)
 {
