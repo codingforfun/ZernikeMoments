@@ -67,8 +67,6 @@ template<class T, class TIn>
 void ZernikeDescriptor<T, TIn>::ComputeMoments ()
 {
     gm_.Init (voxels_, dim_, dim_, dim_, xCOG_, yCOG_, zCOG_, scale_, order_);
-    //gm_.SetTransform (xCOG_, yCOG_, zCOG_, scale_);
-    //gm_.Compute ();
 
     // Zernike moments
     zm_.Init (order_, gm_);
