@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -45,7 +45,7 @@ ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments ()
 template<class VoxelT, class MomentT>
 ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments (
         const VoxelT* _voxels,
-        int _xDim, int _yDim, int _zDim, 
+        int _xDim, int _yDim, int _zDim,
         double _xCOG, double _yCOG, double _zCOG,
         double _scale,
         int _maxOrder)
@@ -69,7 +69,7 @@ ScaledGeometricalMoments<VoxelT,MomentT>::ScaledGeometricalMoments (
 template<class VoxelT, class MomentT>
 void ScaledGeometricalMoments<VoxelT,MomentT>::Init (
         const VoxelT* _voxels,
-        int _xDim, int _yDim, int _zDim, 
+        int _xDim, int _yDim, int _zDim,
         double _xCOG, double _yCOG, double _zCOG,
         double _scale,
         int _maxOrder)
@@ -100,7 +100,7 @@ void ScaledGeometricalMoments<VoxelT,MomentT>::Init (
     ComputeSamples (_xCOG, _yCOG, _zCOG, _scale);
 
     Compute ();
-}   
+}
 
 
 template<class VoxelT, class MomentT>
@@ -125,7 +125,7 @@ void ScaledGeometricalMoments<VoxelT,MomentT>::ComputeSamples (double _xCOG, dou
         {
             samples_[i][j] = min[i] + j * _scale;
         }
-    }      
+    }
 }
 
 
@@ -165,11 +165,11 @@ void ScaledGeometricalMoments<VoxelT,MomentT>::Compute ()
         for (int p=0; p<layerDim; ++p)
         {
             // multiply the diff function with the sample values
-            T1DIter sampleIter (samples_[0].begin ()); 
+            T1DIter sampleIter (samples_[0].begin ());
             layer[p] = Multiply (diffIter, sampleIter, xDim_ + 1);
 
             diffIter += xDim_ + 1;
-        }              
+        }
 
         iter = layer.begin ();
         diffIter = diffLayer.begin ();
@@ -186,7 +186,7 @@ void ScaledGeometricalMoments<VoxelT,MomentT>::Compute ()
             diffIter = diffLayer.begin ();
             for (int p=0; p<arrayDim; ++p)
             {
-                T1DIter sampleIter (samples_[1].begin ()); 
+                T1DIter sampleIter (samples_[1].begin ());
                 array[p] = Multiply (diffIter, sampleIter, yDim_ + 1);
 
                 diffIter += yDim_ + 1;
@@ -198,7 +198,7 @@ void ScaledGeometricalMoments<VoxelT,MomentT>::Compute ()
 
             for (int k=0; k<maxOrder_+1-i-j; ++k)
             {
-                T1DIter sampleIter (samples_[2].begin ()); 
+                T1DIter sampleIter (samples_[2].begin ());
 
                 moment = Multiply (diffIter, sampleIter, zDim_ + 1);
                 moments_[i][j][k] = moment / ((1+i) * (1+j) * (1+k));

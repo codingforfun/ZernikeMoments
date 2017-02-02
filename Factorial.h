@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -77,10 +77,10 @@ private:
 };
 
 // The obligatory initialization of static attributes
-template<class T> 
+template<class T>
 int Factorial<T>::max_ = 19;
 
-template<class T> 
+template<class T>
 vector<T> Factorial<T>::factorials_;
 
 /**
@@ -100,7 +100,7 @@ inline void Factorial<T>::ComputeFactorials ()
 }
 
 /**
- * Retrieves the factorial of _i. All factorials are computed only the first 
+ * Retrieves the factorial of _i. All factorials are computed only the first
  * time this function is called, after this they are just read from the store.
  */
 template<class T>
@@ -118,7 +118,7 @@ inline T Factorial<T>::Get (int _i)
     {
         return 1;
     }
-    
+
     return factorials_[_i-1];
 }
 

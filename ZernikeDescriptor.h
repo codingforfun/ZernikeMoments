@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -60,9 +60,9 @@ class ZernikeDescriptor
 public:
     // ---- exported typedefs ----
     /// complex type
-    typedef std::complex<T>                         ComplexT;       
+    typedef std::complex<T>                         ComplexT;
     /// 3D array of complex type
-    typedef vector<vector<vector<ComplexT> > >      ComplexT3D;     
+    typedef vector<vector<vector<ComplexT> > >      ComplexT3D;
 
 
     typedef vector<T>                               T1D;
@@ -86,7 +86,7 @@ public:
     ZernikeDescriptor ();
 
     /**
-        Reconstructs the original object from the 3D Zernike moments.    
+        Reconstructs the original object from the 3D Zernike moments.
      */
     void Reconstruct (
         ComplexT3D& _grid,          /**< result grid as 3D complex stl vector */
@@ -112,26 +112,26 @@ private:
     void ComputeMoments ();
     void ComputeInvariants ();
     void WriteGrid (
-        ComplexT3D& _grid, 
+        ComplexT3D& _grid,
         const char* _fName);
 
     double ComputeScale_BoundingSphere (
-        T* _voxels, 
-        int _dim, 
-        T _xCOG, 
-        T _yCOG, 
+        T* _voxels,
+        int _dim,
+        T _xCOG,
+        T _yCOG,
         T _zCOG
         );
     double ComputeScale_RadiusVar (
-        T* _voxels, 
-        int _dim, 
-        T _xCOG, 
-        T _yCOG, 
+        T* _voxels,
+        int _dim,
+        T _xCOG,
+        T _yCOG,
         T _zCOG
         );
 
     T* ReadGrid (
-        const char* _fname, 
+        const char* _fname,
         int& _dim_);
 
 
@@ -143,7 +143,7 @@ private:
 
     T*      voxels_;                // 1D array containing the voxels
     T       zeroMoment_,            // zero order moment
-            xCOG_, yCOG_, zCOG_,    // center of gravity  
+            xCOG_, yCOG_, zCOG_,    // center of gravity
             scale_;                 // scaling factor mapping the function into the unit sphere
 
     //T2D                 invariants_;        // 2D vector of invariants under SO(3)
@@ -151,7 +151,7 @@ private:
 
     ZernikeMomentsT     zm_;
     //CumulativeMomentsT  cm_;
-    ScaledGeometricalMomentsT gm_;  
+    ScaledGeometricalMomentsT gm_;
 };
 
 #include "ZernikeDescriptor.cpp"

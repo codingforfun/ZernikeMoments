@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -118,10 +118,10 @@ template<class T, class TIn>
 void ZernikeDescriptor<T, TIn>::ComputeNormalization ()
 {
     ScaledGeometricalMoments<T, T> gm (voxels_, dim_, 0.0, 0.0, 0.0, 1.0);
-    
+
     // compute the geometrical transform for no translation and scaling, first
     // to get the 0'th and 1'st order properties of the function
-    //gm.Compute ();    
+    //gm.Compute ();
 
     // 0'th order moments -> normalization
     // 1'st order moments -> center of gravity
@@ -131,7 +131,7 @@ void ZernikeDescriptor<T, TIn>::ComputeNormalization ()
     zCOG_ = gm.GetMoment (0, 0, 1) / zeroMoment_;
 
     // scaling, so that the function gets mapped into the unit sphere
-    
+
     //T recScale = ComputeScale_BoundingSphere (voxels_, dim_, xCOG_, yCOG_, zCOG_);
     T recScale = 2.0 * ComputeScale_RadiusVar (voxels_, dim_, xCOG_, yCOG_, zCOG_);
     if (recScale == 0.0)
@@ -139,7 +139,7 @@ void ZernikeDescriptor<T, TIn>::ComputeNormalization ()
         std::cerr << "\nNo voxels in grid!\n";
         exit (-1);
     }
-    scale_ = (T)1 / recScale;                          
+    scale_ = (T)1 / recScale;
 }
 
 /**
@@ -164,7 +164,7 @@ T* ZernikeDescriptor<T, TIn>::ReadGrid (const char* _fname, int& _dim_)
     while (infile.read ((char*)(&temp), sizeof (TIn)))
     {
         tempGrid.push_back ((T)temp);
-    }  
+    }
 
     int d = tempGrid.size ();
     double f = pow ((double)d, 1.0/3.0);
@@ -256,12 +256,12 @@ void ZernikeDescriptor<T, TIn>::Reconstruct (ComplexT3D& _grid, int _minN, int _
     T fac = (T)(_grid.size ()) / (T)dim_;
 
     zm_.Reconstruct (_grid,         // result grid
-                     xCOG_*fac,     // center of gravity properly scaled 
-                     yCOG_*fac, 
-                     zCOG_*fac, 
-                     scale_/fac,    // scaling factor 
+                     xCOG_*fac,     // center of gravity properly scaled
+                     yCOG_*fac,
+                     zCOG_*fac,
+                     scale_/fac,    // scaling factor
                      _minN, _maxN,  // min and max freq. components to be reconstructed
-                     _minL, _maxL); 
+                     _minL, _maxL);
 }
 
 
@@ -318,10 +318,10 @@ void ZernikeDescriptor<T,TIn>::SaveInvariants (const char* _fName)
 
     int dim = invariants_.size ();
     outfile.write ((char*)(&dim), sizeof(int));
-    
+
     for (int i=0; i<dim; ++i)
     {
         temp = invariants_[i];
-        outfile.write ((char*)(&temp), sizeof(float));    
+        outfile.write ((char*)(&temp), sizeof(float));
     }
 }

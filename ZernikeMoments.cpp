@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -44,8 +44,8 @@ for more information, see the paper:
  */
 template<class T>
 ComplexCoeff<T>::ComplexCoeff (const ComplexCoeff<T>& _cc) :
-    p_ (_cc.p_), q_ (_cc.q_), r_ (_cc.r_), value_ (_cc.value_)             
-{  
+    p_ (_cc.p_), q_ (_cc.q_), r_ (_cc.r_), value_ (_cc.value_)
+{
 }
 
 /**
@@ -69,13 +69,13 @@ ComplexCoeff<T>::ComplexCoeff () :
 
 // ---------- implementation of ZernikeMoments class -------------
 template<class VoxelT, class MomentT>
-ZernikeMoments<VoxelT,MomentT>::ZernikeMoments (int _order, ScaledGeometricalMoments<VoxelT,MomentT>& _gm)  
+ZernikeMoments<VoxelT,MomentT>::ZernikeMoments (int _order, ScaledGeometricalMoments<VoxelT,MomentT>& _gm)
 {
     Init (_order, _gm);
 }
 
 template<class VoxelT, class MomentT>
-ZernikeMoments<VoxelT,MomentT>::ZernikeMoments () : 
+ZernikeMoments<VoxelT,MomentT>::ZernikeMoments () :
     order_ (0)
 {
 }
@@ -89,9 +89,9 @@ void ZernikeMoments<VoxelT,MomentT>::Init (int _order, ScaledGeometricalMoments<
     gm_ = _gm;
     order_ = _order;
 
-    ComputeCs ();                      
+    ComputeCs ();
     ComputeQs ();
-    ComputeGCoefficients (); 
+    ComputeGCoefficients ();
 }
 
 
@@ -102,7 +102,7 @@ template<class VoxelT, class MomentT>
 void ZernikeMoments<VoxelT,MomentT>::ComputeCs ()
 {
     /*
-     indexing: 
+     indexing:
        l goes from 0 to n
        m goes from -l to l, in fact from 0 to l, since c(l,-m) = c (l,m)
     */
@@ -114,7 +114,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeCs ()
         cs_[l].resize (l + 1);
         for (int m=0; m<=l; ++m)
         {
-            T n_sqrt = ((T)2 * l + (T)1) * 
+            T n_sqrt = ((T)2 * l + (T)1) *
                        Factorial<T>::Get (l + 1, l + m);
             T d_sqrt = Factorial<T>::Get (l - m + 1, l);
 
@@ -139,7 +139,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeQs ()
 
     qs_.resize (order_ + 1);            // there is order_ + 1 n's
 
-    for (int n=0; n<=order_; ++n)   
+    for (int n=0; n<=order_; ++n)
     {
         qs_[n].resize (n / 2 + 1);      // there is floor(n/2) + 1 l's
 
@@ -166,7 +166,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeQs ()
 
                 T n_sqrt = (T)(2 * l + 4 * k + 3);      // nominator of sqrt part
                 T d_sqrt = (T)3;                        // denominator of sqrt part
-               
+
                 qs_[n][l/2][mu] =  nom / den * sqrt (n_sqrt / d_sqrt);
             }
         }
@@ -176,7 +176,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeQs ()
 /**
  * Computes the coefficients of geometrical moments in linear combinations
  * yielding the Zernike moments for each applicable [n,l,m] for n<=order_.
- * For each such combination the coefficients are stored with according 
+ * For each such combination the coefficients are stored with according
  * geom. moment order (see ComplexCoeff).
  */
 template<class VoxelT, class MomentT>
@@ -212,7 +212,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeGCoefficients ()
                                 T w_NuABP = w_NuAB * Binomial<T>::Get (m, p);
                                 for (int mu=0; mu<=(l-m)/2; ++mu)
                                 {
-                                    T w_NuABPMu = w_NuABP * 
+                                    T w_NuABPMu = w_NuABP *
                                                   Binomial<T>::Get (l, mu) *
                                                   Binomial<T>::Get (l-mu, m+mu) /
                                                   (T)pow (2.0, (double)(2*mu));
@@ -235,8 +235,8 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeGCoefficients ()
                                         case 0: c = ComplexT (w_NuABPMuQ, (T)0); break;
                                         case 1: c = ComplexT ((T)0, w_NuABPMuQ); break;
                                         case 2: c = ComplexT ((T)(-1) * w_NuABPMuQ, (T)0); break;
-                                        case 3: c = ComplexT ((T)0, (T)(-1) * w_NuABPMuQ); break; 
-                                        }   
+                                        case 3: c = ComplexT ((T)0, (T)(-1) * w_NuABPMuQ); break;
+                                        }
 
                                         // determination of the order of according moment
                                         int z_i = l-m+2*(nu-alpha-beta-mu);
@@ -246,9 +246,9 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeGCoefficients ()
                                         //std::cout << x_i << " " << y_i << " " << z_i;
                                         //std::cout << "\t" << n << " " << l << " " << m;
                                         //std::cout << "\t" << c.real () << " " << c.imag () << std::endl;
-//DD                                                                                              
+//DD
                                         ComplexCoeffT cc (x_i, y_i, z_i, c);
-                                        gCoeffs_[n][li][m].push_back (cc);    
+                                        gCoeffs_[n][li][m].push_back (cc);
 //DD
                                         countCoeffs++;
 //DD
@@ -267,7 +267,7 @@ void ZernikeMoments<VoxelT,MomentT>::ComputeGCoefficients ()
 }
 
 /**
- * Computes the Zernike moments. This computation is data dependent 
+ * Computes the Zernike moments. This computation is data dependent
  * and has to be performed for each new object and/or transformation.
  */
 template<class VoxelT, class MomentT>
@@ -290,7 +290,7 @@ void ZernikeMoments<VoxelT,MomentT>::Compute ()
     */
 
     T nullMoment;
-                                                                                     
+
     zernikeMoments_.resize (order_ + 1);
     for (int n=0; n <= order_; ++n)
     {
@@ -301,7 +301,7 @@ void ZernikeMoments<VoxelT,MomentT>::Compute ()
         {
             zernikeMoments_[n][li].resize (l + 1);
             for (int m=0; m<=l; ++m)
-            {   
+            {
                 // Zernike moment of according indices [nlm]
                 ComplexT zm ((T)0, (T)0);
 
@@ -331,8 +331,8 @@ void ZernikeMoments<VoxelT,MomentT>::Compute ()
 
 
 /**
- * The function previously encoded as complex valued Zernike 
- * moments, is reconstructed. _grid is the output grid containing 
+ * The function previously encoded as complex valued Zernike
+ * moments, is reconstructed. _grid is the output grid containing
  * the reconstructed function.
  */
 template<class VoxelT, class MomentT>
@@ -367,9 +367,9 @@ void ZernikeMoments<VoxelT,MomentT>::Reconstruct (ComplexT3D& _grid, T _xCOG, T 
             {
                 // the origin is in the middle of the grid, all voxels are
                 // projected into the unit ball
-                point[0] = ((T)x-vx) * scale;    
-                point[1] = ((T)y-vy) * scale;    
-                point[2] = ((T)z-vz) * scale; 
+                point[0] = ((T)x-vx) * scale;
+                point[1] = ((T)y-vy) * scale;
+                point[2] = ((T)z-vz) * scale;
 
                 if (point[0]*point[0] + point[1]*point[1] + point[2]*point[2] > 1.0)
                 {
@@ -397,29 +397,29 @@ void ZernikeMoments<VoxelT,MomentT>::Reconstruct (ComplexT3D& _grid, T _xCOG, T 
                             for (int m=-l; m<=l; ++m)
                             {
                                 // zernike polynomial evaluated at point
-                                ComplexT zp (0, 0); 
+                                ComplexT zp (0, 0);
 
                                 int absM = std::abs (m);
 
                                 int nCoeffs = gCoeffs_[n][l/2][absM].size ();
                                 for (int i=0; i<nCoeffs; ++i)
-                                {                                                 
-                                    ComplexCoeffT cc = gCoeffs_[n][l/2][absM][i];                                     
+                                {
+                                    ComplexCoeffT cc = gCoeffs_[n][l/2][absM][i];
                                     ComplexT cvalue = cc.value_;
 
-                                    // conjugate if m negative 
+                                    // conjugate if m negative
                                     if (m<0)
                                     {
                                         cvalue = std::conj (cvalue);
 
                                         // take care of the sign
-                                        if (m%2) 
+                                        if (m%2)
                                         {
                                             cvalue *= (T)(-1);
                                         }
                                     }
 
-                                    zp += cvalue * 
+                                    zp += cvalue *
                                           std::pow (point[0],(T)cc.p_) *
                                           std::pow (point[1],(T)cc.q_) *
                                           std::pow (point[2],(T)cc.r_);
@@ -544,13 +544,13 @@ void ZernikeMoments<VoxelT,MomentT>::CheckOrthonormality (int _n1, int _l1, int 
             int p = cc1.p_ + cc2.p_;
             int q = cc1.q_ + cc2.q_;
             int r = cc1.r_ + cc2.r_;
-            
-            sum +=  cc1.value_ * 
-                    std::conj (cc2.value_) * 
+
+            sum +=  cc1.value_ *
+                    std::conj (cc2.value_) *
                     EvalMonomialIntegral (p, q, r, dim);
         }
     }
-   
+
     std::cout << "\nInner product of [" << _n1 << "," << _l1 << "," << _m1 << "]";
     std::cout << " and [" << _n2 << "," << _l2 << "," << _m2 << "]: ";
     std::cout << sum << "\n\n";
@@ -584,17 +584,17 @@ MomentT ZernikeMoments<VoxelT,MomentT>::EvalMonomialIntegral (int _p, int _q, in
                 if (point[0]*point[0] + point[1]*point[1] + point[2]*point[2] > (T)1)
                 {
                     continue;
-                }    
- 
-                result += std::pow (point[0],(T)_p) * 
-                          std::pow (point[1],(T)_q) * 
-                          std::pow (point[2],(T)_r);                
+                }
+
+                result += std::pow (point[0],(T)_p) *
+                          std::pow (point[1],(T)_q) *
+                          std::pow (point[2],(T)_r);
             }
         }
     }
 
     result *=  (T)(3.0 / (4.0 * PI)) * scale;
-    return result;        
+    return result;
 }
 
 

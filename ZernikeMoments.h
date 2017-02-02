@@ -1,11 +1,11 @@
 /*
-                                                                            
-                          3D Zernike Moments                                
-    Copyright (C) 2003 by Computer Graphics Group, University of Bonn       
-           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/             
-                                                                            
+
+                          3D Zernike Moments
+    Copyright (C) 2003 by Computer Graphics Group, University of Bonn
+           http://www.cg.cs.uni-bonn.de/project-pages/3dsearch/
+
 Code by Marcin Novotni:     marcin@cs.uni-bonn.de
-       
+
 for more information, see the paper:
 
 @inproceedings{novotni-2003-3d,
@@ -17,8 +17,8 @@ for more information, see the paper:
     month = {June},
     institution = {Universit\"{a}t Bonn},
     conference = {The 8th ACM Symposium on Solid Modeling and Applications, June 16-20, Seattle, WA}
-}        
- *---------------------------------------------------------------------------* 
+}
+ *---------------------------------------------------------------------------*
  *                                                                           *
  *                                License                                    *
  *                                                                           *
@@ -59,7 +59,7 @@ for more information, see the paper:
  * of order (p_,q_,r_)
  */
 template<class T>
-struct ComplexCoeff 
+struct ComplexCoeff
 {
     typedef     std::complex<T>     ValueT;
 
@@ -87,7 +87,7 @@ public:
 
     typedef std::complex<T>                      ComplexT;       // complex type
     typedef vector<vector<vector<ComplexT> > >   ComplexT3D;     // 3D array of complex type
-    
+
     typedef ComplexCoeff<T>                      ComplexCoeffT;
     typedef vector<vector<vector<vector<ComplexCoeffT> > > >    ComplexCoeffT4D;
 
@@ -104,11 +104,11 @@ public:
 
     // ---- debug functions/arguments ----
     void Reconstruct (ComplexT3D&   _grid,                // grid containing the reconstructed function
-                      T             _xCOG,                // center of gravity 
-                      T             _yCOG,                  
-                      T             _zCOG, 
+                      T             _xCOG,                // center of gravity
+                      T             _yCOG,
+                      T             _zCOG,
                       T             _scale,               // scaling factor to map into unit ball
-                      int           _minN = 0,            // min value for n freq index 
+                      int           _minN = 0,            // min value for n freq index
                       int           _maxN = 100,          // min value for n freq index
                       int           _minL = 0,            // min value for l freq index
                       int           _maxL = 100);         // max value for l freq index
@@ -118,10 +118,10 @@ public:
 
 private:
     // ---- private member functions ----
-    void ComputeCs ();                      
+    void ComputeCs ();
     void ComputeQs ();
     void ComputeGCoefficients ();
-    
+
     // ---- private attributes -----
     ComplexCoeffT4D     gCoeffs_;           // coefficients of the geometric moments
     ComplexT3D          zernikeMoments_;    // nomen est omen
