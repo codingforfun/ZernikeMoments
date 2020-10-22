@@ -1,3 +1,15 @@
+# Note: 
+
+This is basically just a copy from the source below. I don’t maintain the code. I also don’t use it myself. 
+I had plans to use it in a project but then went other ways, so this is basically just a copy of the plain 
+code for backup purposes and some CMake added, because that’s the build system I usually use. 
+
+Please don’t ask me about how to do stuff with the code or errors. Please refer to the original source below 
+or the papers in case of questions. 
+Anyway it’s ok if you report issues for discussion with others, just note I can’t/won’t answer most questions 
+and will probably do nothing to test/integrate/fix anything to the code. 
+Feel free to fork again and maintain according to the original copyright notice below. 
+
 # ZernikeMoments
 
 Fork of GPL code writen by Marcin Novotni (Uni-Bonn) and provided as supplementary material with the paper:
