@@ -287,11 +287,11 @@ void ZernikeDescriptor<T,TIn>::ComputeInvariants ()
     {
         //invariants_[n].resize (n/2 + 1);
 
-        T sum = (T)0;
         int l0 = n % 2, li = 0;
 
         for (int l = n % 2; l<=n; ++li, l+=2)
         {
+            T sum = (T)0;
             for (int m=-l; m<=l; ++m)
             {
                 ComplexT moment = zm_.GetMoment (n, l, m);
